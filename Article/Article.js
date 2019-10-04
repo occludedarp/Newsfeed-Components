@@ -112,3 +112,53 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+
+function createComponent(title, date, first, second, third){
+  
+  const articleDiv = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const paragraph1 = document.createElement('p')
+  const paragraph2 = document.createElement('p')
+  const paragraph3 = document.createElement('p')
+  const button = document.createElement('span')
+  
+  
+  //html structure
+  articleDiv.appendChild(articleTitle)
+  articleDiv.appendChild(articleDate)
+  articleDiv.appendChild(paragraph1)
+  articleDiv.appendChild(paragraph2)
+  articleDiv.appendChild(paragraph3)
+  articleDiv.appendChild(button)
+  
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  paragraph1.textContent = first;
+  paragraph2.textContent = second;
+  paragraph3.textContent = third;
+  //class names
+  articleDiv.classList.add('article')
+  articleDate.classList.add('date')
+  button.classList.add('expandButton')
+
+  
+  button.addEventListener('click', (e) => {
+    articleDiv.classList.toggle('.article-open')
+  })
+  
+  return articleDiv
+} 
+
+const newsfeed = document.querySelector('.articles');
+
+
+data.forEach(articleData => {
+  newsfeed.appendChild(createComponent(articleData.title, articleData.date, articleData.firstParagraph, articleData.secondParagraph, articleData.thirdParagraph))
+})
+
+
+
+// debugger;
+// articles.appendChild(createComponent('testing title', 'testing content'))
